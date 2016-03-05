@@ -1,0 +1,16 @@
+
+ <div class="btn-group">
+      <a href="javascript:void(0)" class="btn btn-raised dropdown-toggle" >
+        {{dropdown}}
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li class="option" ng-repeat="option in selectVal" id="{{$index}}"><a href="javascript:void(0)">{{option}}</a></li>
+      </ul>
+    </div>
+    <select name="{{title}}" ng-model="model.id" style="display:none"> 
+    <option ng-repeat="option in selectVal" value="{{$index}}">{{option}}</option>
+    </select>
+  {{model.id}}
+   <!-- <ng-transclude></ng-transclude>  -->
+ 

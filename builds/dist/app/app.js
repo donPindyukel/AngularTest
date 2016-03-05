@@ -3,87 +3,49 @@ $.material.init();
 
 angular.module('ngFit', [])
 .controller("AppCtrl",function($scope){
-	$scope.title = "Hello World!";
-	$scope.enterOver = function(){
-		console.log("yeeep");
-	}
-})
-.directive("example", function(){
-	return {
-		restrict:"EA",
-		scope: {},
-		transclude: true,
-		template:"<h3>This is new directive</h3><ng-transclude></ng-transclude>",
-		controller: function($scope) {
-						$scope.abilities = [];
-
-						this.addStrength = function(){
-							$scope.abilities.push("strength");
-						};
-						this.addSpeed = function(){
-							$scope.abilities.push("speed");
-						};
-						this.addFlight = function(){
-							$scope.abilities.push("flight");
-						};
-		},
+	$scope.selectArr = ["Not Awesome", "Little Awesome", "Eeee I'm Awesome"];
 	
-		link: function(scope,element, attrs) {
-			element.addClass("btn btn-default");
-			element.bind("mouseenter", function(){
-				console.log(scope.abilities);
+	
+})
+.directive("selectAwesome", function(){
+	return {
+		restrict:"A",
+		scope:{
+				selectVal: "=",
+				title: "@"
+		},
+		//transclude:true,
+		templateUrl:"select.tpl.html",
+		controller: function($scope){
+			$scope.selectName = $scope.title;
+			$scope.model = {id:0};
+			$scope.dropdown = $scope.selectVal[0];
+		
+		},
+		link: function(scope,elem) {
+			elem.bind("mouseenter", function(){
+
+				elem.find(".dropdown-menu").show();
+			});
+
+			elem.bind("mouseleave", function(){
+
+				elem.find(".dropdown-menu").hide();
+			});
+             
+			
+			scope.$watch(elem.find(".option"), function(){
+				elem.find(".option").bind("click",function(){
+					var value = angular.element(this).index();
+					scope.model.id = String(value);
+				    scope.dropdown = scope.selectVal[scope.model.id];
+					scope.$apply();
+					
+				});
 			});
 		}
-	}	
-})
-.directive("speed", function(){
-	return {
-			require:"example",
-			link: function(scope,element, attrs, exampleCtrl){
-				exampleCtrl.addSpeed();
-			}
 	}
-
-})
-.directive("flight", function(){
-	return {
-			require:"example",
-			link: function(scope,element, attrs, exampleCtrl){
-				exampleCtrl.addFlight();
-			}
-	}
-})
-.directive("strength", function(){
-	return {
-			require:"example",
-			link: function(scope,element, attrs, exampleCtrl){
-				exampleCtrl.addStrength();
-			}
-	}
-})
-.directive("enter", function(){
-	return {
-			link: function(scope,element, attrs){
-				console.log(attrs);
-				element.bind("mouseenter",function(){
-					element.addClass(attrs.enter);
-				});
-			
-			}
-	};
-})
-.directive("leave", function(){
-	return {
-			link: function(scope,element, attrs){
-				console.log(attrs);
-				element.bind("mouseleave",function(){
-					element.removeClass(attrs.enter);
-				});
-			
-			}
-	};
 });
-
 
 /**
  * Created by szaharov on 28/05/15.
