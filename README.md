@@ -1,5 +1,5 @@
 # ngFit App
-![Building a ngFit App with AngularJS](ngFit.png)
+
 # Install
 ```sh
 $ git clone https://github.com/Severenit/ngFit.git && cd ngFit
@@ -36,34 +36,3 @@ You can use your own mixin value, making all similar.
 
 All values are stored in a file ***builds/development/sass/includes/_stack.scss***
 # Structure
-<pre>
-├──  builds/
-│   ├──  development/
-│   │   │   ├── app/
-│   │   │   │   ├──  components/
-│   │   │   │   │   └──  navbar/
-│   │   │   │   │   │   ├──  navbar.controller.js
-│   │   │   │   │   │   └──  navbar.html
-│   │   │   │   ├──  main/
-│   │   │   │   │   ├──  main.controller.js
-│   │   │   │   │   └──  main.html
-│   │   │   │   └──  app.js
-│   │   │   ├──  fonts/
-│   │   │   ├──  css/
-│   │   │   ├──  img/
-│   │   │   ├──  libs/
-│   │   │   ├──  sass/
-│   │   │   │   ├──  includes/
-│   │   │   │   │   ├──  mixins/...
-│   │   │   │   │   ├──  _mixins.scss
-│   │   │   │   │   ├──  _stack.scss
-│   │   │   │   │   └──  _varibles.scss
-│   │   │   │   └──  styles.scss
-│   │   │   └──  index.html
-├──  bower_components/
-├──  node_modules/
-├──  .gitignore
-├──  bower.json
-├──  gulpfile.js
-├──  package.json
-</pre>
